@@ -1,0 +1,36 @@
+This lab has a simple reflected XSS vulnerability. The site is blocking common tags but misses some SVG tags and events
+
+To solve the lab, perform a cross-site scripting attack that calls the alert() function
+
+
+There are 2 ways
+
+1st way is to just find out the tag and use the payload from the XSS cheat sheet and paste in the website url in the search
+
+<svg><animatetransform onbegin=alert(1) attributeName=transform>
+
+
+2nd way
+
+Type anything in the search bar than catch the req in the burpsuite intercept and send it to intruder Place the cursor between the angle brackets and click Add § to create a payload position Find the tag first
+after finding it 
+
+use this code 
+<svg><animatetransform%20=1>
+
+Place the cursor before the = character and click Add § to create a payload position
+
+<svg><animatetransform%20§§=1>
+
+
+
+Visit the XSS cheat sheet and click Copy events to clipboard. 
+
+Finding the event like onbegin we will find the this code in the XSS cheat sheet
+
+<svg><animatetransform onbegin=alert(1) attributeName=transform>
+
+use it
+
+
+https://YOUR-LAB-ID.web-security-academy.net/?search=%22%3E%3Csvg%3E%3Canimatetransform%20onbegin=alert(1)%3E

@@ -1,0 +1,11 @@
+ This lab reflects user input in a canonical link tag and escapes angle brackets.
+
+To solve the lab, perform a cross-site scripting attack on the home page that injects an attribute that calls the alert function. 
+
+since we cant tag and escapes angle brackets like  hello'><script>
+
+The Solution
+
+?'accesskey='x'onclick='alert(1)
+
+add this end of the url and its solved

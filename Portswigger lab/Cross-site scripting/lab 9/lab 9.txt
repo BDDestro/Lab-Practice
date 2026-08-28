@@ -1,0 +1,1 @@
+just send the pay load '-alert(1)-'  in search bar  there is already script in it

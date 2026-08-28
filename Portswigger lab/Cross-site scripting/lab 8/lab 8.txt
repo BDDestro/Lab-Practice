@@ -1,0 +1,11 @@
+we send a comment
+ the and we will see if the website we provided is in the href then we will apply javascript:alert(1) in the website box
+
+
+href(hypertext reference)
+
+it is used in html for  directed to the specified URL
+
+For Example
+
+<a href="https://www.example.com">

