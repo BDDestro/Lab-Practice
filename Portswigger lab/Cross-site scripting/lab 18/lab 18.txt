@@ -1,0 +1,18 @@
+ This lab contains a reflected cross-site scripting vulnerability in the search query tracking functionality.
+
+
+ The reflection occurs inside a JavaScript string with single quotes and backslashes escaped.
+
+example:   a';alert(1);'      single quotes
+
+          \\a';alert(1);     single quotes and backslashes
+
+
+
+To solve this lab, perform a cross-site scripting attack that breaks out of the JavaScript string and calls the alert function. 
+
+Since there Already a script there so we need to use this payload to break out of the script block and inject a new script
+
+</script><script>alert(1)</script>
+
+this script will stop the script on the website and than my script will take over and the alert happens

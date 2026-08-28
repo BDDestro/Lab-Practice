@@ -1,0 +1,45 @@
+This lab contains a reflected cross-site scripting vulnerability in the search blog functionality. The reflection occurs inside a template string with angle brackets, single, and double quotes HTML encoded, and backticks escaped. 
+
+To solve this lab, perform a cross-site scripting attack that calls the alert function inside the template string
+
+
+Step-1:
+we will send any random word like hmm in the search box 
+
+step-2:
+Observe that the random string has been reflected inside a JavaScript template string
+
+<script>
+                            var message = `0 search results for 'hmm'`;
+
+
+                            document.getElementById('searchMessage').innerText = message;
+                        </script>
+
+
+in this script there are there is `0 search results for 'hmm'` this line where multiple string can be wriitne becuse of this backtick (``) symbol. In JavaScript we cant add or write multiple string just only using '' or ""
+
+Step-3:
+
+this backtick (``) symbol will help us to send a payload directly without any problem
+
+and execute the alert and lab solved
+
+
+The Payload    ${alert(1)}
+
+The code will work like this :
+
+
+<script>
+                            var message = `0 search results for '${alert(1)}'`;
+
+                            document.getElementById('searchMessage').innerText = message;
+                        </script>
+
+
+
+
+
+
+

